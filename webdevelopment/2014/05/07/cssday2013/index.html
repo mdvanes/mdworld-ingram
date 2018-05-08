@@ -1,0 +1,187 @@
+<!DOCTYPE html><!--[if lt IE 9]> <html class="lt-ie9" lang="en"> <![endif]--><!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]--><!--[if gt IE 9]><!--><html xmlns=http://www.w3.org/1999/xhtml class=gt-ie9 lang=en><!--<![endif]--><head><!-- version 0.3.5 --><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=author content="mdworld 0.3.5"><title>CSSDay 2013</title><link rel="shortcut icon" href=/blog/img/favicon.ico type=image/x-icon><link rel=stylesheet href=/blog/css/all.css></head><body><div class=site><nav class="navbar navbar-inverse navbar-fixed-top"><div><div class=container><div class=row><ul class="nav navbar-nav navbar-right"><li><a href=/blog/ ><span class="glyphicon glyphicon-home"></span> home</a></li><li><a href=/blog/#blog><span class="glyphicon glyphicon-pencil"></span> blog</a></li><li><a href=https://twitter.com/mdworldNL><span class=twitter></span> <span class=label-optional>@mdworldNL</span></a></li><li><a href=# data-toggle=modal data-target=#contactModal><span class="glyphicon glyphicon-envelope"></span> <span class=label-optional>contact</span></a></li></ul></div></div></div><header><h1 class="title post-title container">CSSDay 2013</h1></header></nav><p class="meta container">07 May 2014</p><div class="post container"><div class=multi-column-text><p>On the 14th of June 2013 I've attended the advanced CSS conference <a href=http://cssday.nl/2013>CSS Day</a> in Amsterdam. I have selected three of the subjects that I found particularly useful and want to discuss here.<br>A complete summary of this conference is also available on the blog of <a href=http://www.mirellavanteulingen.nl/blog/cssday2013/ >Mirella van Teulingen</a>.</p><h2>Border-radius</h2><p><a href=http://lea.verou.me/ >Lea Verou</a> spoke about some crazy stuff you can do with border-radius. The interactive slides can be found <a href=http://lea.verou.me/humble-border-radius/ >here</a>, but she herself also warns that it is not as useful without having seen the presentation (<a href=http://vimeo.com/channels/cssday/70171266>the video can be found here</a>) because she was live coding some parts. I've added some demos based on her slides below.</p><!--<p>
+    it is possible to set different border-radius with the combined statement ..., which is shorther then border-top-left-radius, etc.
+
+    The border-radius on the corner of an element has an <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">x and an y axis</a> that can also be set separately e.g.:
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">border-radius</span><span class="o">:</span> <span class="nt">10px</span> <span class="o">/</span> <span class="nt">5px</span><span class="o">;</span></code></pre></figure>
+
+    <div class="diff-xy"></div>
+
+    <style>
+.diff-xy {
+    background-color: #1A511A;
+    border-radius: 2em / 1em;
+    height: 3em;
+    width: 3em;
+}
+    </style>
+
+    Combining these notations it is also possible to set <i>each corner</i> to a different 
+border-radius with separate x and y values: 
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">border-radius</span><span class="o">:</span> <span class="nt">10px</span> <span class="o">/</span> <span class="nt">5px</span> <span class="nt">10px</span> <span class="o">/</span> <span class="nt">5px</span> <span class="nt">10px</span> <span class="o">/</span> <span class="nt">5px</span> <span class="nt">10px</span> <span class="o">/</span> <span class="nt">5px</span><span class="o">;</span></code></pre></figure>
+</p>--><p>Maybe you already know about <a href=http://www.css3shapes.com/ >CSS3 Shapes</a>; a collection of CSS snippets to make basic shapes in pure CSS, e.g. square, triangles, <a href=/blog/webdevelopment/2013/04/09/fronteers-2012-css/ >a speechbubble</a>. With border-radius it is possible to make circles, eggs, semi-circles.</p><div class=semi-ellipse></div><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* an example of a semi-ellipse */</span>
+<span class=nt>border-radius</span><span class=o>:</span> <span class=nt>50</span><span class=o>%/</span><span class=nt>100</span><span class=o>%</span> <span class=nt>100</span><span class=o>%</span> <span class=nt>0</span> <span class=nt>0</span><span class=o>;</span></code></pre></figure><style>.semi-ellipse {
+    background-color: #1A511A;
+    border-radius: 50%/100% 100% 0 0;
+    height: 3em;
+    margin-bottom: 1em;
+    width: 3em;
+}</style>See the <a href=http://lea.verou.me/humble-border-radius/#elliptical-curves>slide on elliptical curves</a>, and press the right arrow key several times. This can be used to make some really fancy-looking buttons, for instance.<p></p><p>Of course it is possible to combine these shapes with CSS transitions to make simple animations. See <a href=http://lea.verou.me/humble-border-radius/#animation>this slide</a> for an interactive demo or just try hovering over this box:</p><div class=anim></div><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.anim</span> <span class=p>{</span>
+    <span class=nl>border-radius</span><span class=p>:</span> <span class=m>50%</span><span class=p>/</span><span class=m>100%</span> <span class=m>100%</span> <span class=m>0</span> <span class=m>0</span><span class=p>;</span>
+    <span class=nl>transition</span><span class=p>:</span> <span class=m>0.5s</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.anim</span><span class=nd>:hover</span> <span class=p>{</span>
+    <span class=nl>border-radius</span><span class=p>:</span> <span class=m>50%</span><span class=p>;</span>
+    <span class=nl>transition</span><span class=p>:</span> <span class=m>0.5s</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><style>.anim {
+    background-color: #1A511A;
+    border-radius: 50%/100% 100% 0 0;
+    height: 3em;
+    margin-bottom: 1em;
+    transition: 0.5s;
+    width: 4em;
+}
+.anim:hover {
+    border-radius: 50%;
+    transition: 0.5s;
+}</style><p></p><p>In the future it might be possible to change the shape of the corner. Now it is always a curve, but with corner-shape it would be possible to choose different types like bevel, scoop and notch. Lea Verou provides code to emulate this behaviour with SVG in the browser. Explore <a href=http://lea.verou.me/2013/03/border-corner-shape-is-in-danger-and-you-can-help/ >this page</a><!--<a href="http://leaverou.github.io/border-corner-shape/">this page</a>--> for the examples.</p><p>By the way, if you're very smitten with mr. border-radius, you can find more about his origin <a href=http://dribbble.com/shots/990664-The-humble-border-radius>here</a>.</p><h2>Advanced CSS selectors</h2>Bert Bos, who co-created CSS in 1994, talked about CSS selectors. Unfortunately, he didn't really manage to get to the advanced part before the end of his talk, but he does mention it in <a href=http://www.w3.org/Talks/2013/0614-CSS-Amsterdam/ >his slides</a>.<p>I have also mentioned the basic hierarchical selectors, e.g. all (*), by id, by class, conjunctions and sibling/child dependent (>,+,~) in my <a href=/blog/webdevelopment/2011/12/03/fronteers-2011-css/ >previous post</a>). Another common selector is testing the value of an attribute, for example:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nt>input</span><span class=o>[</span><span class=nt>type</span><span class=o>=</span><span class=s1>"text"</span><span class=o>]</span></code></pre></figure>for selecting all input element with the value "text" for attribute "type".<br>We can also do more specific matches with ^= (starts with), $= (ends with), *= (contains), but I would like to pay special attention to ~= and |=.<p></p><p>~= matches a value in a whitespace separated value list. This way you can match e.g. a data attribute with multiple values like you would match a CSS class (which can also be whitespace separated).<br>It is more specific than *= (contains), because &lt;span data-foo="bar batman"&gt;&lt;/span&gt; would be matched by span[data-foo*=bat] but not by span[data-foo~=bat].</p><p>|= is used specifically for unicode language identifiers. lang|=en will match either lang="en" or any value that starts with "en-". Also note that language can be matched directly with :lang(x).<br>For more information see <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors>this MDN page</a> or these examples:</p><div class=css2013><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* &lt;span data-foo="bar baz bat"&gt;
+   bar baz bat&lt;/span&gt;
+   &lt;span data-foo="bar batman"&gt;
+    bar batman&lt;/span&gt;
+*/</span>
+<span class=nt>span</span><span class=o>[</span><span class=nt>data-foo</span><span class=o>~=</span><span class=nt>bat</span><span class=o>]</span> <span class=p>{</span>
+    <span class=nl>background-color</span><span class=p>:</span> <span class=no>red</span><span class=p>;</span>
+<span class=p>}</span>   </code></pre></figure><p class=whitespace-match><span data-foo="bar baz bat">bar baz bat</span> <span data-foo="bar batman">bar batman</span></p></div><div class=css2013><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* &lt;span lang="en-us"&gt;color
+   &lt;span lang="en-gb"&gt;colour
+   &lt;span lang="nl-nl"&gt;kleur */</span>
+<span class=nt>span</span><span class=o>[</span><span class=nt>lang</span><span class=o>|=</span><span class=nt>en</span><span class=o>]</span> <span class=p>{</span>
+    <span class=nl>background-color</span><span class=p>:</span> <span class=no>blue</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nd>:lang</span><span class=o>(</span><span class=nt>nl</span><span class=o>)</span> <span class=p>{</span>
+    <span class=nl>background-color</span><span class=p>:</span> <span class=no>green</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p class=lang-match><span lang=en-us>color</span> <span lang=en-gb>colour</span> <span lang=nl-nl>kleur</span></p></div><p>First-line and first-letter are some pseudo elements that might come in handy:</p><div class=css2013><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* first line bold */</span>
+<span class=nt>p</span><span class=nd>::first-line</span> <span class=p>{</span>
+    <span class=nl>font-weight</span><span class=p>:</span> <span class=nb>bold</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p class=first-line>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div><div class=css2013><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* first letters styled */</span>
+<span class=nt>p</span><span class=nd>::first-letter</span> <span class=p>{</span>
+    <span class=nl>font-family</span><span class=p>:</span> <span class=n>Verdana</span><span class=p>,</span> <span class=nb>serif</span><span class=p>;</span>
+    <span class=nl>font-size</span><span class=p>:</span> <span class=m>4em</span><span class=p>;</span>
+    <span class=nl>font-style</span><span class=p>:</span> <span class=nb>italic</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p class=first-letter>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div><p>Bert Bos' slides also mention some "missing" selectors. These are not yet implemented and some are even marked as "at risk", i.e. that they might be removed from the spec altogether.</p><p>The pseudo elements ::value and ::choices are both <a href=http://www.w3.org/TR/css3-ui/ >features at risk</a>. The purpose of <a href=http://www.w3.org/TR/css3-ui/#pseudo-value>::value</a> would be to style the content of an input element that is <i>not</i> contained in another element, e.g. the "bar" part of this example:</p><figure class=highlight><pre><code class=language-html data-lang=html><span class=nt>&lt;input&gt;&lt;label&gt;</span>foo<span class=nt>&lt;/label&gt;</span>bar<span class=nt>&lt;/input&gt;</span></code></pre></figure><p>To me it seems marginally useful, since it can be avoided by wrapping bar in e.g. a span. On the other hand <a href=http://www.w3.org/TR/css3-ui/#pseudo-choices>::choices</a> can be used to style radio buttons or dropdowns, which seems very useful, but neither pseudo elements are implemented in Firefox 28.0 nor Chrome 34.</p><p>Of course, it is still possible to restyle the radio buttons (at least in Firefox and Chrome) by setting the non-standard property "appearance". The following example works particularly well in Chrome:</p><div class=css2013><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.custom-radio</span> <span class=nt>input</span> <span class=p>{</span>
+    <span class=nl>-moz-appearance</span><span class=p>:</span> <span class=nb>none</span><span class=p>;</span>
+    <span class=nl>-webkit-appearance</span><span class=p>:</span> <span class=nb>none</span><span class=p>;</span>
+    <span class=nl>background</span><span class=p>:</span> <span class=no>white</span><span class=p>;</span>
+    <span class=nl>border-radius</span><span class=p>:</span> <span class=m>40%</span><span class=p>;</span>
+    <span class=nl>border</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=no>black</span><span class=p>;</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>inline-block</span><span class=p>;</span>
+    <span class=nl>height</span><span class=p>:</span> <span class=m>20px</span><span class=p>;</span>
+    <span class=nl>width</span><span class=p>:</span> <span class=m>20px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure></div><div class=css2013><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.custom-radio</span> <span class=nt>input</span><span class=nd>:checked</span> <span class=p>{</span>
+    <span class=nl>background</span><span class=p>:</span> <span class=no>green</span><span class=p>;</span>
+    <span class=nl>border</span><span class=p>:</span> <span class=m>2px</span> <span class=nb>solid</span> <span class=no>black</span><span class=p>;</span>
+    <span class=nl>box-shadow</span><span class=p>:</span> 
+        <span class=nb>inset</span> <span class=m>0</span> <span class=m>0</span> <span class=m>0</span> <span class=m>2px</span> <span class=no>white</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p class=custom-radio><label><input type=radio name=test value=op1>option 1</label><label><input type=radio name=test value=op2>option 2</label></p></div><p>For completeness, he also mentions the following selectors, although they are either not supported or still in the proposed state:</p><ul><li>display: run-in (not supported in Firefox and Chrome), see a demo <a href=http://css-tricks.com/run-in/ >here</a>.</li><li>::marker (proposed, see the <a href=http://www.w3.org/TR/css3-lists/#marker-pseudo-element>spec</a>)</li><li>::slot(), ::column(), @region (proposed, see the <a href=http://dev.w3.org/csswg/css-template/ >spec</a>)</li></ul><br><h2>Flexbox</h2><p>The talk by Stephen Hay was an update on the confusing state of the flexbox specs. Flexbox (or flexible box layout) is a new display type. Its goal is to provide an easy and intuitive way to define a layout, amongst others making centered elements and dynamically distributing available space. The problem is that there are several "dialects" (old, mid, new) of the flexbox syntax with varying degrees of support in the browsers. It makes it difficult, but not impossible, to make a cross-browser implementation of a flexbox layout.</p><p>Let's first take a look at a typical problem that can be solved with flexbox. To center a div both horizontally as well as vertically in non-flexbox CSS, usually requires a wrapper div set to 100% width and using auto margins:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.wrapper</span> <span class=p>{</span>
+    <span class=nl>width</span><span class=p>:</span> <span class=m>100%</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.content</span> <span class=p>{</span>
+    <span class=nl>background</span><span class=p>:</span> <span class=no>green</span><span class=p>;</span>
+    <span class=nl>margin</span><span class=p>:</span> <span class=m>0</span> <span class=nb>auto</span><span class=p>;</span>
+    <span class=nl>width</span><span class=p>:</span> <span class=m>100px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><div class="old-centered wrapper"><div class=content>a centered div</div></div><p>With flexbox it would be possible to define a flexbox containing a flex item. The flexbox may be told to center its flex items. It needs no additional CSS on the flex item:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.wrapper</span> <span class=p>{</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>flex</span><span class=p>;</span>
+    <span class=nl>justify-content</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>align-items</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><div class=flexbox><div class=flexitem>a centered div</div></div><p>As mentioned, there are different dialects, but Chrome, Firefox, Safari en IE10+ all support it in some way. For now, to make the above example work cross-browser, this is needed:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.wrapper</span> <span class=p>{</span>
+    <span class=c>/* activate flexbox display type */</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>-webkit-box</span><span class=p>;</span>   <span class=c>/* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>-moz-box</span><span class=p>;</span>      <span class=c>/* OLD: Firefox (buggy) */</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>-ms-flexbox</span><span class=p>;</span>   <span class=c>/* MID: IE 10 */</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>-webkit-flex</span><span class=p>;</span>  <span class=c>/* NEW, Chrome 21–28, Safari 6.1+ */</span>
+    <span class=nl>display</span><span class=p>:</span> <span class=n>flex</span><span class=p>;</span>          <span class=c>/* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */</span>
+
+    <span class=c>/* horizontally center contained flex items */</span>
+    <span class=nl>-webkit-box-pack</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span> <span class=nl>-moz-box-pack</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>-ms-flex-pack</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>-webkit-justify-content</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>justify-content</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+
+    <span class=c>/* vertically center contained flex items */</span>
+    <span class=nl>-webkit-box-align</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span> <span class=nl>-moz-box-align</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>-ms-flex-align</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>-webkit-align-items</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+    <span class=nl>align-items</span><span class=p>:</span> <span class=nb>center</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p>If you use Sass or LESS (which I think you should), you can use mixins to make your life easier. Compass provides <a href=http://compass-style.org/reference/compass/css3/box/ >the compass/css3/box mixin</a> for Sass.</p><p>This centering example comes from <a href=http://www.smashingmagazine.com/2013/05/22/centering-elements-with-flexbox/ >this article</a>. It also mentions other usecases, such as distributing the available width over elements that are horizontally aligned. Instead of setting a width to fixed or by percentage, you can set the property "flex" to 1, to divide the available width equally over all elements. Now, if you want one of the elements to take up more width, you could set "flex" to 2, so it will take up 2 "flex units". If this seems unclear take a look at <a href=https://dl.dropbox.com/u/444684/flexbox/flexbox2.html>this demo</a>.</p><style>.css2013 {
+    border: 1px solid #4A4A4A;
+    display: inline-block;
+    min-height: 240px;
+    vertical-align: top;
+    width: 300px;
+}
+
+.whitespace-match span[data-foo~=bat] {
+    background-color: red;
+}
+.lang-match span[lang|=en] {
+    background-color: blue;
+}
+.lang-match :lang(nl) {
+    background-color: green;
+}
+
+.first-line::first-line {
+    font-weight: bold;
+}
+.first-letter::first-letter {
+    font-family: Verdana, serif;
+    font-size: 4em;
+    font-style: italic;
+}
+
+.custom-radio input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: white;
+    border-radius: 40%;
+    border: 1px solid black;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+.custom-radio input:checked {
+    background: green;
+    border: 2px solid black;
+    box-shadow: inset 0 0 0 2px white;
+}
+
+.old-centered.wrapper {
+    width: 100%;
+}
+.old-centered .content {
+    background: green;
+    margin: 0 auto;
+    width: 100px;
+}
+
+.flexbox {
+    -webkit-box-align: center; -moz-box-align: center; /* OLD… */
+    -ms-flex-align: center; /* You know the drill now… */
+    -webkit-align-items: center;
+    align-items: center;
+
+    display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+    display: -moz-box;      /* OLD: Firefox (buggy) */
+    display: -ms-flexbox;   /* MID: IE 10 */
+    display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+    display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+
+    -webkit-box-pack: center; -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.flexitem {
+    background: green;    
+}</style></div></div><div class="modal fade modal-terminal" id=contactModal tabindex=-1 role=dialog aria-labelledby=contactModalLabel aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal><span aria-hidden=true>&times;</span><span class=sr-only>Close</span></button><h4 class=modal-title id=myModalLabel>contact@mdworld</h4></div><div class=modal-body><form role=form id=contactForm><div class=form-group><label for=contactName>Name</label><input class=form-control id=contactName placeholder="Enter name" name=name required maxlength=1024></div><div class=form-group><label for=contactEmail>Email address</label><input type=email class=form-control id=contactEmail placeholder="Enter email" name=email required maxlength=1024></div><div class=form-group><label for=contactMessage>Message</label><textarea class=form-control id=contactMessage placeholder=Message name=message required maxlength=4096></textarea></div><button type=button class="btn btn-primary submit-contact">Submit</button></form></div></div></div></div><footer><div class="content container"><div class="row projects"><div class="col-xs-12 col-xl-4 col-xl-offset-2"><h2>Open Source by MDWorld</h2></div></div><div class="row projects"><div class="col-xs-12 col-sm-6 col-xl-4 col-xl-offset-2"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/polygram><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>polygram</h4>Polymer and Redux App</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-pwa-demo><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-pwa-demo</h4>Progressive Web App demo</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/homeremote><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>HomeRemote</h4>ES6 React and Node Home automation tool</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/generator-mdworld-toolchain><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>generator-mdworld-toolchain</h4>Yeoman generator to set up the mdworld toolchain</div></a></div><div class=media-wrapper><a class=media href=http://mdvanes.github.io/ImpossibleObjects/ ><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>ImpossibleObjects</h4>A selection of impossible objects using Canvas</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2html><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2html</h4>Grunt task to combine Knockout templates into one HTML</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2js><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2js</h4>Grunt task to convert Knockout templates to a JavaScript file</div></a></div></div><div class="col-xs-12 col-sm-6 col-xl-4"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-stox><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-stox</h4>Websockets in Node.js demo</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/SynergyChrome><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>SynergyChrome</h4>Use Synergy in Chrome</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/Movienight><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>Movienight</h4>PoC for hybrid app with Ionic Framework</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mderekelbox><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Rekelbox</h4>Arduino VU meter</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdepolska><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Polska</h4>Polish keyboard Drupal module</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdegraph><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Graph</h4>Javascript Graph PoC</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdeinsignificant><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Insignificant!</h4>loltext generator Drupal module</div></a></div></div></div><div class=row><h1 class=dedication>an MDWorld production</h1><p><a class=cc href=http://creativecommons.org/licenses/by-nc-sa/3.0/ title="Creative Commons">CC</a> 2003-2017</p></div></div></footer></div><!-- .site --><script src=/blog/js/scripts.js></script><!-- Run init for demo after loading jquery --><script>if(typeof(demoInit) === 'function') {
+                demoInit();
+            }</script></body></html>

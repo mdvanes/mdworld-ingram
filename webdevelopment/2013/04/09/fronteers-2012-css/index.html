@@ -1,0 +1,177 @@
+<!DOCTYPE html><!--[if lt IE 9]> <html class="lt-ie9" lang="en"> <![endif]--><!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]--><!--[if gt IE 9]><!--><html xmlns=http://www.w3.org/1999/xhtml class=gt-ie9 lang=en><!--<![endif]--><head><!-- version 0.3.5 --><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=author content="mdworld 0.3.5"><title>Fronteers 2012: CSS</title><link rel="shortcut icon" href=/blog/img/favicon.ico type=image/x-icon><link rel=stylesheet href=/blog/css/all.css></head><body><div class=site><nav class="navbar navbar-inverse navbar-fixed-top"><div><div class=container><div class=row><ul class="nav navbar-nav navbar-right"><li><a href=/blog/ ><span class="glyphicon glyphicon-home"></span> home</a></li><li><a href=/blog/#blog><span class="glyphicon glyphicon-pencil"></span> blog</a></li><li><a href=https://twitter.com/mdworldNL><span class=twitter></span> <span class=label-optional>@mdworldNL</span></a></li><li><a href=# data-toggle=modal data-target=#contactModal><span class="glyphicon glyphicon-envelope"></span> <span class=label-optional>contact</span></a></li></ul></div></div></div><header><h1 class="title post-title container">Fronteers 2012: CSS</h1></header></nav><p class="meta container">09 Apr 2013</p><div class="post container"><div class=multi-column-text><p>Just like last year, this post is an reduced version of the talk by the inimitable Lea Verou with inline demo&#39;s. It&#39;s based on <a href=https://vimeo.com/52882799>the video recording of her talk</a> and <a href=http://lea.verou.me/more-css-secrets/ >her slides</a>.</p><style>#nowrapper {
+  background: #ccc;
+  border: 1px solid white;
+  color: #000;
+  height: 200px;
+  overflow: hidden;
+  padding: 2px calc(50% - 100px);
+}
+
+#transition {
+  border: 2px dotted #fff;
+  height: 20px;
+  overflow: hidden;
+  transition-duration: 1s;
+  -o-transition-duration: 1s;
+  width: 200px;
+}
+#transition:hover {
+  height: 310px;
+  width: 100%;
+}
+#transition2 {
+  border: 2px dotted #fff;
+  height: 20px;
+  overflow: hidden;
+  transition: 1s width, 
+                   1s 1s height, 
+                   1s 2s background, 
+                   1s 2s color,
+                   1s 2s border;
+  width: 200px;
+}
+#transition2 .code {
+  background: transparent;
+}
+#transition2:hover {
+  background: #ccc;
+  border: 2px dotted #000;
+  color: #000;
+  height: 460px;
+  width: 100%;
+}
+
+.zebra {
+  background-image: linear-gradient(#000 50%, #333 50%);
+  background-origin: content-box;
+  background-size: 100% 2.4em; /* height should be 2* line height */
+  color: #ff8100;
+  font-family: monospace;
+  line-height: 1.2em;
+}
+
+#bubble1 {
+  border: 30px solid blue;
+  border-bottom: 30px solid #ccc;
+  height: 0;
+  width: 0;
+}
+#bubble2 {
+  border: 30px solid blue;
+  border-top: 0px solid blue;
+  border-bottom: 30px solid #ccc;
+  height: 0;
+  width: 0;
+}
+#bubble3 {
+  border: 30px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 30px solid #ccc;
+  height: 0;
+  width: 0;
+}
+.bubble4 {
+  background: #ccc;
+  border-radius: 5px;
+  color: #000;
+  padding: 10px;
+  position: relative;
+}
+.bubble4:before {
+  border: 30px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 30px solid #ccc;
+  content: ""; 
+  height: 0;
+  left: 190px;
+  position: absolute;
+  top: -30px;
+  width: 0;
+}
+.bubble4-text dd,
+.bubble4-text dt {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.bubble-shadow1 {
+  box-shadow: 1px -2px 5px #8DB11F;
+}
+.bubble-shadow2 {
+  -moz-filter: drop-shadow(1px -2px 5px #8DB11F);
+  -ms-filter: drop-shadow(1px -2px 5px #8DB11F);
+  -webkit-filter: drop-shadow(1px -2px 5px #8DB11F);
+  filter: drop-shadow(1px -2px 5px #8DB11F);
+}</style><h1>Center floating block without wrapper</h1><p>It&#39;s an extremely common situation to want to center float your content in a fixed width column. The usual solution would be to make a full width wrapper element for your content and style it like this:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.content-wrapper</span> <span class=p>{</span>
+   <span class=nl>width</span><span class=p>:</span> <span class=m>100%</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.content</span> <span class=p>{</span>
+   <span class=nl>margin</span><span class=p>:</span> <span class=m>0</span> <span class=nb>auto</span><span class=p>;</span>
+   <span class=nl>width</span><span class=p>:</span> <span class=m>200px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p><br></p><p>I&#39;m sure making this wrapper everytime has bothered you as much as me and with the introduction of <a href="http://caniuse.com/#search=calc">calc()</a> for CSS, it can be left out! Just use:</p><p><br><br></p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.content</span> <span class=p>{</span>
+   <span class=nl>padding</span><span class=p>:</span> <span class=m>1em</span> <span class=n>calc</span><span class=p>(</span><span class=m>50%</span> <span class=n>-</span> <span class=m>100px</span><span class=p>;</span><span class=err>)</span>
+<span class=p>}</span></code></pre></figure><p><br></p><p>The 1em can be anything, since it is the vertical padding. The 100px is half of the intended width. What you&#39;re effectively expressing here is a full width element (default for all display: block; elements) with a left and right padding of 50% of the screen, but subtracting (half of) the width of the (virtual in this case) content column. This is the single most useful application of mixed unit calculations in runtime CSS, IMHO. It even works in IE9+.</p><p><br><br></p><p>Example:</p><div id=nowrapper>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id semper turpis. Donec convallis sollicitudin magna ut fermentum. Vestibulum nec diam sit amet velit gravida euismod. Maecenas rutrum nisi ut tortor mollis volutpat. Nullam lacus leo, sodales eget viverra ac, hendrerit tristique dui. Vivamus semper adipiscing fermentum. Phasellus ultricies vestibulum velit id ullamcorper. Maecenas cursus velit et nunc placerat lacinia. In vitae leo mi, eu scelerisque nibh. Praesent lacinia leo sit amet dui ullamcorper non posuere neque consequat. Nam ac adipiscing massa. Sed eu massa vitae nibh mollis varius. Vestibulum ut felis eget felis tincidunt porttitor at nec eros. Aliquam in hendrerit purus. Donec vehicula congue iaculis.</div><p></p><p><br></p><h1>Multiple transitions</h1><p>Already <a href=/blog/webdevelopment/2011/01/21/fronteers-2010-css/ >2 years back</a> I have mentioned CSS transitions, but now it is possible to append multiple transitions. Let&#39;s put it into practice using my old example:</p><div id=transition>Try hovering over this text.<figure class=highlight><pre><code class=language-css data-lang=css><span class=nf>#transition</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>2px</span> <span class=nb>dotted</span> <span class=m>#fff</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>20px</span><span class=p>;</span>
+  <span class=nl>overflow</span><span class=p>:</span> <span class=nb>hidden</span><span class=p>;</span>
+  <span class=nl>transition-duration</span><span class=p>:</span> <span class=m>1s</span><span class=p>;</span>
+  <span class=nl>-o-transition-duration</span><span class=p>:</span> <span class=m>1s</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>200px</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nf>#transition</span><span class=nd>:hover</span> <span class=p>{</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>310px</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>100%</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure></div><p>As you can see, upon hover the box expands in the horizontal and vertical direction evenly and at the same time. Now it is possible to combine transitions, we can expand it first in width and then roll it out vertically. It works in IE, but only 10+.</p><div id=transition2>Now, who dares hovering?!<figure class=highlight><pre><code class=language-css data-lang=css><span class=nf>#transition2</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>2px</span> <span class=nb>dotted</span> <span class=m>#fff</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>20px</span><span class=p>;</span>
+  <span class=nl>overflow</span><span class=p>:</span> <span class=nb>hidden</span><span class=p>;</span>
+  <span class=nl>transition</span><span class=p>:</span> <span class=m>1s</span> <span class=n>width</span><span class=p>,</span> 
+                   <span class=m>1s</span> <span class=m>1s</span> <span class=n>height</span><span class=p>,</span> 
+                   <span class=m>1s</span> <span class=m>2s</span> <span class=n>background</span><span class=p>,</span> 
+                   <span class=m>1s</span> <span class=m>2s</span> <span class=n>color</span><span class=p>,</span>
+                   <span class=m>1s</span> <span class=m>2s</span> <span class=n>border</span><span class=p>;</span>
+  <span class=c>/* the 1s directly before height is the delay 
+       for the second animation */</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>200px</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nf>#transition2</span><span class=nd>:hover</span> <span class=p>{</span>
+  <span class=nl>background</span><span class=p>:</span> <span class=m>#ccc</span><span class=p>;</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>2px</span> <span class=nb>dotted</span> <span class=m>#000</span><span class=p>;</span>
+  <span class=nl>color</span><span class=p>:</span> <span class=m>#000</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>460px</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>100%</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure></div><p>This example reverts the animation the same way as it starts: first width then height. It is possible to do this backwards, but it would involve adding a class (e.g. current) with javascript after the animation ends and then overwriting the transition property to go backwards.</p><p><br><br></p><h1>Scaling line backgrounds</h1><p>Using CSS it is possible to set a separate background for alternating lines of text, without adding HTML elements for every line. This might be comfortable for displaying source code:</p><pre class=zebra>
+.zebra {
+  background-image: linear-gradient(#000 50%, #333 50%);
+  background-origin: content-box;
+  background-size: 100% 2.4em;
+  color: #ff8100;
+  font-family: monospace;
+  line-height: 1.2em;
+}
+</pre><p>Let&#39;s go into this in a little more detail. A linear-gradient as background and the background-size property where also used in <a href=/blog/webdevelopment/2011/12/03/fronteers-2011-css/ >my previous article</a> to display diagonally striped backgrounds. The gradient uses 2 colors stops both at 50%, making two solid planes in the desired colors. Next, the background-size is set to 100% of the width but 2.4em, i.e. twice the line-height. This makes the background pattern of the two solid planes repeat every two lines. This is why it is essential that the background height is twice the line-height.</p><p>As if this wasn&#39;t already briljant enough, it also automatically scales with the font-size. Because the background-size and line-height use the relative unit em, they both scale with the font-size. Try changing it:<select onchange="$('.zebra').css('font-size',$(this).val());"><option value=80%>80%</option><option value=100% selected>100%</option><option value=120%>120%</option></select></p><p><br><br></p><h1>A speech bubble</h1><p>What is a speech bubble without the tail pointing to its speaker? Well, just a bubble, I suppose. It is also a commonly used UI component to give information about some part of the UI, e.g. information for a specific input field. Most UI design I&#39;ve seen use CSS for the bubble but an image for the tail, but it is possible to do this in pure CSS, and it is surprisingly easy.</p><p>Imagine we want to make our tail point up. Let&#39;s first define a div with zero height but fat borders. I&#39;ll give the bottom border a different color:</p><div id=bubble1></div>We just make the top border zero height:<div id=bubble2></div>And then all the borders, except for the bottom, transparent:<div id=bubble3></div>Adding this as a pseudo element to the actual bubble, gives us this:<p></p><p><br><br></p><dl class=bubble4-text><dt>Enter your name here:</dt><dd><input></dd></dl><div class=bubble4>Really, you need me to explain what "Enter your name here" means?</div><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.bubble4</span> <span class=p>{</span>
+  <span class=nl>background</span><span class=p>:</span> <span class=m>#ccc</span><span class=p>;</span>
+  <span class=nl>border-radius</span><span class=p>:</span> <span class=m>5px</span><span class=p>;</span>
+  <span class=nl>color</span><span class=p>:</span> <span class=m>#000</span><span class=p>;</span>
+  <span class=nl>padding</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=nl>position</span><span class=p>:</span> <span class=nb>relative</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.bubble4</span><span class=nd>:before</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>30px</span> <span class=nb>solid</span> <span class=nb>transparent</span><span class=p>;</span>
+  <span class=nl>border-top</span><span class=p>:</span> <span class=m>0px</span> <span class=nb>solid</span> <span class=nb>transparent</span><span class=p>;</span>
+  <span class=nl>border-bottom</span><span class=p>:</span> <span class=m>30px</span> <span class=nb>solid</span> <span class=m>#ccc</span><span class=p>;</span>
+  <span class=nl>content</span><span class=p>:</span> <span class=s1>""</span><span class=p>;</span> 
+  <span class=nl>height</span><span class=p>:</span> <span class=m>0</span><span class=p>;</span>
+  <span class=nl>left</span><span class=p>:</span> <span class=m>190px</span><span class=p>;</span>
+  <span class=nl>position</span><span class=p>:</span> <span class=nb>absolute</span><span class=p>;</span>
+  <span class=nl>top</span><span class=p>:</span> <span class=m>-30px</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>0</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p><br><br></p><p>Normally, adding a box-shadow to this speech bubble, would leave the tail &quot;unshadowed&quot;:</p><p><br><br></p><dl class=bubble4-text><dt>Enter your name here:</dt><dd><input></dd></dl><div class="bubble4 bubble-shadow1">Really, you need me to explain what "Enter your name here" means?</div><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.bubble-shadow1</span> <span class=p>{</span>
+  <span class=nl>box-shadow</span><span class=p>:</span> <span class=m>1px</span> <span class=m>-2px</span> <span class=m>5px</span> <span class=m>#8DB11F</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p><br><br></p><p>A new CSS property, <a href="http://caniuse.com/#feat=css-filters">filter</a>, should be able to help here. It adds SVG filters to CSS. This doesn&#39;t work as well in FF as it does in webkit. Although there is a <a href=http://lea.verou.me/more-css-secrets/#slide50>workaround</a>, the clean solution I present here only works in webkit.</p><p><br><br></p><dl class=bubble4-text><dt>Enter your name here:</dt><dd><input></dd></dl><div class="bubble4 bubble-shadow2">Really, you need me to explain what "Enter your name here" means?</div><figure class=highlight><pre><code class=language-css data-lang=css><span class=nc>.bubble-shadow2</span> <span class=p>{</span>
+  <span class=nl>-moz-filter</span><span class=p>:</span> <span class=n>drop-shadow</span><span class=p>(</span><span class=m>1px</span> <span class=m>-2px</span> <span class=m>5px</span> <span class=m>#8DB11F</span><span class=p>);</span>
+  <span class=nl>-ms-filter</span><span class=p>:</span> <span class=n>drop-shadow</span><span class=p>(</span><span class=m>1px</span> <span class=m>-2px</span> <span class=m>5px</span> <span class=m>#8DB11F</span><span class=p>);</span>
+  <span class=nl>-webkit-filter</span><span class=p>:</span> <span class=n>drop-shadow</span><span class=p>(</span><span class=m>1px</span> <span class=m>-2px</span> <span class=m>5px</span> <span class=m>#8DB11F</span><span class=p>);</span>
+  <span class=nl>filter</span><span class=p>:</span> <span class=n>drop-shadow</span><span class=p>(</span><span class=m>1px</span> <span class=m>-2px</span> <span class=m>5px</span> <span class=m>#8DB11F</span><span class=p>);</span>
+<span class=p>}</span></code></pre></figure></div></div><div class="modal fade modal-terminal" id=contactModal tabindex=-1 role=dialog aria-labelledby=contactModalLabel aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal><span aria-hidden=true>&times;</span><span class=sr-only>Close</span></button><h4 class=modal-title id=myModalLabel>contact@mdworld</h4></div><div class=modal-body><form role=form id=contactForm><div class=form-group><label for=contactName>Name</label><input class=form-control id=contactName placeholder="Enter name" name=name required maxlength=1024></div><div class=form-group><label for=contactEmail>Email address</label><input type=email class=form-control id=contactEmail placeholder="Enter email" name=email required maxlength=1024></div><div class=form-group><label for=contactMessage>Message</label><textarea class=form-control id=contactMessage placeholder=Message name=message required maxlength=4096></textarea></div><button type=button class="btn btn-primary submit-contact">Submit</button></form></div></div></div></div><footer><div class="content container"><div class="row projects"><div class="col-xs-12 col-xl-4 col-xl-offset-2"><h2>Open Source by MDWorld</h2></div></div><div class="row projects"><div class="col-xs-12 col-sm-6 col-xl-4 col-xl-offset-2"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/polygram><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>polygram</h4>Polymer and Redux App</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-pwa-demo><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-pwa-demo</h4>Progressive Web App demo</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/homeremote><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>HomeRemote</h4>ES6 React and Node Home automation tool</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/generator-mdworld-toolchain><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>generator-mdworld-toolchain</h4>Yeoman generator to set up the mdworld toolchain</div></a></div><div class=media-wrapper><a class=media href=http://mdvanes.github.io/ImpossibleObjects/ ><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>ImpossibleObjects</h4>A selection of impossible objects using Canvas</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2html><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2html</h4>Grunt task to combine Knockout templates into one HTML</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2js><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2js</h4>Grunt task to convert Knockout templates to a JavaScript file</div></a></div></div><div class="col-xs-12 col-sm-6 col-xl-4"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-stox><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-stox</h4>Websockets in Node.js demo</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/SynergyChrome><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>SynergyChrome</h4>Use Synergy in Chrome</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/Movienight><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>Movienight</h4>PoC for hybrid app with Ionic Framework</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mderekelbox><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Rekelbox</h4>Arduino VU meter</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdepolska><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Polska</h4>Polish keyboard Drupal module</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdegraph><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Graph</h4>Javascript Graph PoC</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdeinsignificant><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Insignificant!</h4>loltext generator Drupal module</div></a></div></div></div><div class=row><h1 class=dedication>an MDWorld production</h1><p><a class=cc href=http://creativecommons.org/licenses/by-nc-sa/3.0/ title="Creative Commons">CC</a> 2003-2017</p></div></div></footer></div><!-- .site --><script src=/blog/js/scripts.js></script><!-- Run init for demo after loading jquery --><script>if(typeof(demoInit) === 'function') {
+                demoInit();
+            }</script></body></html>
