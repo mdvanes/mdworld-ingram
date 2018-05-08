@@ -1,0 +1,164 @@
+<!DOCTYPE html><!--[if lt IE 9]> <html class="lt-ie9" lang="en"> <![endif]--><!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]--><!--[if gt IE 9]><!--><html xmlns=http://www.w3.org/1999/xhtml class=gt-ie9 lang=en><!--<![endif]--><head><!-- version 0.3.5 --><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=author content="mdworld 0.3.5"><title>Fronteers 2010: CSS</title><link rel="shortcut icon" href=/blog/img/favicon.ico type=image/x-icon><link rel=stylesheet href=/blog/css/all.css></head><body><div class=site><nav class="navbar navbar-inverse navbar-fixed-top"><div><div class=container><div class=row><ul class="nav navbar-nav navbar-right"><li><a href=/blog/ ><span class="glyphicon glyphicon-home"></span> home</a></li><li><a href=/blog/#blog><span class="glyphicon glyphicon-pencil"></span> blog</a></li><li><a href=https://twitter.com/mdworldNL><span class=twitter></span> <span class=label-optional>@mdworldNL</span></a></li><li><a href=# data-toggle=modal data-target=#contactModal><span class="glyphicon glyphicon-envelope"></span> <span class=label-optional>contact</span></a></li></ul></div></div></div><header><h1 class="title post-title container">Fronteers 2010: CSS</h1></header></nav><p class="meta container">21 Jan 2011</p><div class="post container"><div class=multi-column-text><p>Before I dive into some spectacular features of CSS3, let me say something about CSS attributes.</p><style type=text/css>quote
+{
+  color: white;
+  font-family: serif;
+  font-style: italic;
+}
+/*
+code
+{
+  display: inline;
+  background: #000;
+  color: rgb(255,129,0);
+  font-family: monospace;
+}
+*/
+#multicolumn
+{
+column-width: 20em;
+column-gap: 1em;
+column-rule: 2px solid #fff;
+-moz-column-width: 20em;
+-moz-column-gap: 1em;
+-moz-column-rule: 2px solid #fff;
+-o-column-width: 20em;
+-o-column-gap: 1em;
+-o-column-rule: 2px solid #fff;
+-webkit-column-width: 20em;
+-webkit-column-gap: 1em;
+-webkit-column-rule: 2px solid #fff;
+}
+#transition
+{
+border: 2px dotted #fff;
+height: 20px;
+overflow: hidden;
+transition-duration: 1s;
+-o-transition-duration: 1s;
+-moz-transition-duration: 1s;
+-webkit-transition-duration: 1s;
+width: 200px;
+}
+#transition:hover
+{
+height: 350px;
+width: 500px;
+}
+#widthwarning
+{
+  display: none;
+}
+@media (max-width: 800px)
+{
+  p
+  {
+    background: #5E72A2;
+  }
+  p:hover
+  {
+    background: #8759A6;
+  }
+  #widthwarning
+  {
+    background: #fff;
+    border: 5px solid red;
+    color: black;
+    display: block;
+  }
+}
+/* sample menu */
+
+.cssmenu li:hover {
+  background: black;
+  box-shadow: 2px 2px 2px  #888, inset 0px 20px 30px 0px #ccc;
+  -moz-box-shadow: 2px 2px 2px  #888, inset 0px 20px 30px 0px #ccc;
+  -webkit-box-shadow: 2px 2px 2px  #888, inset 0px 20px 30px 0px #ccc;
+}
+
+.cssmenu {
+  display: inline-block;
+  margin: 1em auto;
+  border-radius: 6px; -o-border-radius: 6px;  -moz-border-radius: 6px; -webkit-border-radius: 6px; 
+  background: #888; 
+  box-shadow: 2px 2px 2px  #888, inset 0px 20px 30px 0px #ccc;
+  -moz-box-shadow: 2px 2px 2px  #888, inset 0px 20px 30px 0px #ccc;
+  -webkit-box-shadow: 2px 2px 2px  #888, inset 0px 20px 30px 0px #ccc;
+  font: bold 13px/20px Arial;
+  color: #333;
+}
+
+.cssmenu ul { 
+  display: inline; margin: 0; padding: 0; text-align: left;
+}
+
+.cssmenu li { 
+  display: inline-block; 
+  text-shadow: 0px 1px #eee; 
+  border-right: 1px solid #777;
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.cssmenu .search {
+  background: white;
+  border-radius: 10px; -o-border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  padding: 2px 10px 1px 20px;
+  margin: 0 10px;
+  box-shadow: inset 1px 1px 2px #444; 
+  font: 12px Arial;
+}</style><div id=widthwarning>Warning: The page width is currently below 800 pixels. This site in general is designed for a width of 1024 pixels and specifically this article loses some value when viewed by default in a width lower then 800 pixels.</div><p>Apparently, the way CSS attributes should be sorted within a CSS class, is a much debated subject. Some people advocate sorting by functional category (in this case grouping first dimensions, then font attributes, then border attributes):</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nt>div</span> <span class=p>{</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+
+  <span class=nl>color</span><span class=p>:</span> <span class=no>red</span><span class=p>;</span>
+  <span class=nl>font-family</span><span class=p>:</span> <span class=n>mono</span><span class=p>;</span>
+
+  <span class=nl>border</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=no>gold</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p><br></p><p>I prefer to sort alphabetically, because it is universal by nature in contrast to sorting by functional category. Of course you could specify an order if you sort by functional category, but that would introduce additional documentation overhead... So I would sort like this:<br><br></p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nt>div</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=no>gold</span><span class=p>;</span>
+  <span class=nl>color</span><span class=p>:</span> <span class=no>red</span><span class=p>;</span>
+  <span class=nl>font-family</span><span class=p>:</span> <span class=n>mono</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p><br></p><p>Although it doesn&#39;t really matter which way you sort, it&#39;s obviously a good idea to sort consistently within your project.<br><br></p><p>I make an exception for vendor prefixes. <a href=http://reference.sitepoint.com/css/vendorspecific>Vendor-prefixes</a> are prefixes for CSS attributes that browser vendors (or manufacturers) use to implement non-standard (or not yet standard) CSS features. Take for example <code>-moz-border-radius</code>. The vendor prefix -moz is used by Mozilla (for Firefox obviously) and it is their implementation of the border-radius attribute. Once border-radius becomes standard, you can just use border-radius, without the prefix. Because of vendor prefixes, a typical block of CSS attributes might look like this:<br><br></p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nt>div</span> <span class=p>{</span>
+  <span class=nl>border-radius</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=nl>-moz-border-radius</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=nl>-o-border-radius</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=nl>-webkit-border-radius</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p><br></p><p>In this case, you might understand it to be wise not to sort the vender prefixes alphabetically, but to group them by attribute.<br><br></p><p>Adobe Flash and images are often used as a workaround for shortcomings of HTML (e.g. to compensate for what now can be done in HTML5 with the &lt;video/&gt; tag) and also for shortcomings for CSS. With CSS3 a lot of features have been added, so the use of images can be reduced even more. I&#39;ll give a couple of examples, so you can see for yourself (these examples where meticulously stolen from the presentation by Hakon Wium Lie).<br><br></p><p><span style="border: 0.1em dotted blue; background: green">background: green; border: 0.1em dotted blue;</span><br><br></p><p><span style="text-shadow: 0px 0px 5px white">text-shadow: 0px 0px 5px white;</span><br><br></p><p><span style="border: 1px solid white; border-radius: 40px; -moz-border-radius: 40px; -webkit-border-radius: 40px; padding: 0 45px">border-radius: 40px;</span><br><br></p><p><span style="border: 1px solid white; border-radius: 150px / 50px; -moz-border-radius: 150px / 50px; -webkit-border-radius: 150px / 50px; padding: 0 20px">border-radius: 150px / 50px;</span><br><br></p><p><span style="border: 1px solid white; border-radius: 150px / 50px; box-shadow: 5px 5px 10px white; -moz-box-shadow: 5px 5px 10px white; -webkit-box-shadow: 5px 5px 10px white; padding: 0 20px">box-shadow: 5px 5px 10px white;</span><br><br></p><p><span style="border-radius: 150px / 50px; -moz-border-radius: 150px / 50px; -webkit-border-radius: 150px / 50px; 
+box-shadow: 0px 0px 5px 3px green inset; -moz-box-shadow: 0px 0px 5px 3px green  inset; -webkit-box-shadow: 0px 0px 5px 3px green inset; padding: 0 20px">box-shadow: 0px 0px 5px 3px green inset;</span><br><br></p><p><span style="border-radius: 150px / 50px; -moz-border-radius: 150px / 50px; -webkit-border-radius: 150px / 50px; 
+box-shadow: 0px 0px 5px 3px red, 0px 0px 7px 5px green inset; -moz-box-shadow: 0px 0px 5px 3px red, 0px 0px 7px 5px green inset; -webkit-box-shadow: 0px 0px 5px 3px red, 0px 0px 7px 5px green inset; padding: 0 20px">0px 0px 5px 3px red, 0px 0px 7px 5px green inset</span><br><br></p><p>This menu is an image on the Apple site, but pure CSS here:<br><br></p><div class=cssmenu><ul><li>web</li><li>design</li><li>without</li><li>images</li></ul><span class=search><input type=search value=Search style="border: none; height: 11px"></span></div><br><br><p></p><p>You may also want to check out this <a href=http://people.opera.com/howcome/2010/tests/operalogo.html>wicked Opera logo fully in CSS</a>.<br><br></p><p>Although before CSS3 there were some hacks to support custom fonts, now the use of Web Fonts has been standardized:<br><br></p><figure class=highlight><pre><code class=language-css data-lang=css><span class=k>@font-face</span> <span class=p>{</span>
+  <span class=nl>font-family</span><span class=p>:</span> <span class=n>WhiteRabbit</span><span class=p>;</span>
+  <span class=nl>src</span><span class=p>:</span> <span class=sx>url(WhiteRabbit.ttf)</span>
+  <span class=n>format</span><span class=p>(</span><span class=s1>"truetype"</span><span class=p>);</span>
+<span class=p>}</span></code></pre></figure><h1 style="font-family: WhiteRabbit">Custom Fonts Roxxorz!</h1><p>You can see, I use this all around this site.</p><p>It&#39;s well known that long lengths of text are more readable when divided across columns, preventing excess horizontal eye movement. This could be solved by using a &lt;table&gt;, but everyone knows that <a href=http://www.w3.org/TR/html5/tabular-data.html#the-table-element>tables</a> are for <a href=http://www.w3.org/TR/html5/tabular-data.html#tabular-data>tabular data</a>, and <a href=http://www.dynamicsitesolutions.com/html/tables-for-tabular-data-only/ >this</a> is why.<br><br></p><p>In CSS3 this can also be solved by using the column-width attribute. Unfortunately it is not widely supported yet (it doesn&#39;t work in Opera), so it is necessary to use vendor prefixes, e.g.:<br><br></p><figure class=highlight><pre><code class=language-css data-lang=css><span class=nt>-moz-column-width</span><span class=o>:</span> <span class=nt>10em</span><span class=o>;</span>
+<span class=nt>-moz-column-gap</span><span class=o>:</span> <span class=nt>1em</span><span class=o>;</span>
+<span class=nt>-moz-column-rule</span><span class=o>:</span> <span class=nt>2px</span> <span class=nt>solid</span> <span class=nf>#fff</span><span class=o>;</span></code></pre></figure><div id=multicolumn>The first draft by the W3C for the Multi Column Layout Module dates from 2001. Unfortunately, it's still not standardized. Firefox and Safari support it through their vendor prefixes. This div is assigned a column width of 20em, and the browser distributes the content across columns of 10em with an amount of columns that fits the available space and a length that accommodates all content. The column-gap attribute specifies the width of the gap between columns and column-rule, using the same syntax as the border attribute, specifies an optional vertical ruler.</div><p>Although all kinds of easing of elements is available through a range of <a href=http://docs.jquery.com/UI/Effects/Fold>javascript</a> <a href=http://developer.yahoo.com/yui/3/examples/anim/easing.html>libraries</a>, this can also be implemented in pure CSS3 when limiting the events to those that can be defined by CSS, e.g. hover.</p><div id=transition>Try hovering over this text. Transition only works in Opera, but this is the CSS you would need:<figure class=highlight><pre><code class=language-css data-lang=css><span class=nf>#transition</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>2px</span> <span class=nb>dotted</span> <span class=m>#fff</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>20px</span><span class=p>;</span>
+  <span class=nl>overflow</span><span class=p>:</span> <span class=nb>hidden</span><span class=p>;</span>
+  <span class=nl>transition-duration</span><span class=p>:</span> <span class=m>1s</span><span class=p>;</span>
+  <span class=nl>-o-transition-duration</span><span class=p>:</span> <span class=m>1s</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>200px</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nf>#transition</span><span class=nd>:hover</span> <span class=p>{</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>350px</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>500px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure></div><p>CSS Media Queries may be known from constructions to override CSS classes for certain media, e.g. printing or handheld devices, like:<br></p><figure class=highlight><pre><code class=language-html data-lang=html><span class=nt>&lt;link</span> <span class=na>type=</span><span class=s>"text/css"</span> <span class=na>media=</span><span class=s>"all"</span> <span class=na>href=</span><span class=s>"default_style.css"</span><span class=nt>/&gt;</span>
+<span class=nt>&lt;link</span> <span class=na>type=</span><span class=s>"text/css"</span> <span class=na>media=</span><span class=s>"print"</span> <span class=na>href=</span><span class=s>"print_style.css"</span><span class=nt>/&gt;</span></code></pre></figure><p>The media type &#39;handheld&#39; is not of much use anymore these days, because there is no standard resolution for handhelds anymore, if there ever was one.</p><p>A more advanced usage is available in CSS3, where conditions can be added to the query:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=k>@media</span> <span class=p>(</span><span class=n>max-width</span><span class=p>:</span> <span class=m>800px</span><span class=p>)</span> <span class=p>{</span>
+  <span class=nt>article</span> <span class=p>{</span>
+    <span class=nl>background</span><span class=p>:</span> <span class=m>#5E72A2</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span></code></pre></figure><p>In this case, when the max-width of the available space drops below 800px, the element &#39;article&#39; gets another background color then when it would be larger than 800px. Try to resize this page below a width of 800px and see what happens. This can be used to reformat a page for handheld devices purely by using CSS.</p><p>Using a separate CSS for printing is not uncommon, but <a href=http://people.opera.com/howcome/2009/talks/img/paged-media-sample-1.png>this is an extreme example</a> of how the <a href=http://www.w3.org/TR/css3-page/ >CSS3 Paged Media module</a> can be used to format a book. On a side note: I&#39;m not under the impression that a lot of browsers support all of the CSS3 Paged Media functions.</p><p>The progressive nature of implementation of standards like CSS3 and HTML5 can make it quite difficult to keep track of what features can be used in what browser. This is where the use of the javascript library <a href=http://www.modernizr.com>Modernizr</a> becomes apparent. When included in your document it detects support for CSS and HTML5 features, amongst others. For example, when the browser has support for box-shadow, the CSS class .box-shadow is added to the document body element. That makes it possible to render differently if the CSS class is not available (<a href=http://www.modernizr.com/docs/#boxshadow>source</a>):</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* Simulated box shadow using borders: */</span>
+<span class=nt>div</span><span class=nc>.somediv</span> <span class=p>{</span>
+  <span class=nl>border-bottom</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=m>#666</span><span class=p>;</span>
+  <span class=nl>border-right</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=m>#777</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.boxshadow</span> <span class=nt>div</span><span class=nc>.somediv</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=nb>none</span><span class=p>;</span>
+  <span class=nl>box-shadow</span><span class=p>:</span> <span class=m>#666</span> <span class=m>1px</span> <span class=m>1px</span> <span class=m>1px</span><span class=p>;</span>
+  <span class=nl>-moz-box-shadow</span><span class=p>:</span> <span class=m>#666</span> <span class=m>1px</span> <span class=m>1px</span> <span class=m>1px</span><span class=p>;</span>
+  <span class=nl>-webkit-box-shadow</span><span class=p>:</span> <span class=m>#666</span> <span class=m>1px</span> <span class=m>1px</span> <span class=m>1px</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure><p>This means you can essentially stop thinking about development on a browser level and concentrate on what features you would like to support. HTML5 and CSS3 features can be gradually integrated without losing support for older browsers.</p><p>You may also be interested in the related articles on <a href=/blog/webdevelopment/2010/11/15/fronteers-2010-html/ >html</a> and <a href=/blog/webdevelopment/2010/11/18/fronteers-2010-javascript/ >javascript</a>.</p></div></div><div class="modal fade modal-terminal" id=contactModal tabindex=-1 role=dialog aria-labelledby=contactModalLabel aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal><span aria-hidden=true>&times;</span><span class=sr-only>Close</span></button><h4 class=modal-title id=myModalLabel>contact@mdworld</h4></div><div class=modal-body><form role=form id=contactForm><div class=form-group><label for=contactName>Name</label><input class=form-control id=contactName placeholder="Enter name" name=name required maxlength=1024></div><div class=form-group><label for=contactEmail>Email address</label><input type=email class=form-control id=contactEmail placeholder="Enter email" name=email required maxlength=1024></div><div class=form-group><label for=contactMessage>Message</label><textarea class=form-control id=contactMessage placeholder=Message name=message required maxlength=4096></textarea></div><button type=button class="btn btn-primary submit-contact">Submit</button></form></div></div></div></div><footer><div class="content container"><div class="row projects"><div class="col-xs-12 col-xl-4 col-xl-offset-2"><h2>Open Source by MDWorld</h2></div></div><div class="row projects"><div class="col-xs-12 col-sm-6 col-xl-4 col-xl-offset-2"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/polygram><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>polygram</h4>Polymer and Redux App</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-pwa-demo><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-pwa-demo</h4>Progressive Web App demo</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/homeremote><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>HomeRemote</h4>ES6 React and Node Home automation tool</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/generator-mdworld-toolchain><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>generator-mdworld-toolchain</h4>Yeoman generator to set up the mdworld toolchain</div></a></div><div class=media-wrapper><a class=media href=http://mdvanes.github.io/ImpossibleObjects/ ><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>ImpossibleObjects</h4>A selection of impossible objects using Canvas</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2html><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2html</h4>Grunt task to combine Knockout templates into one HTML</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2js><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2js</h4>Grunt task to convert Knockout templates to a JavaScript file</div></a></div></div><div class="col-xs-12 col-sm-6 col-xl-4"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-stox><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-stox</h4>Websockets in Node.js demo</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/SynergyChrome><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>SynergyChrome</h4>Use Synergy in Chrome</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/Movienight><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>Movienight</h4>PoC for hybrid app with Ionic Framework</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mderekelbox><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Rekelbox</h4>Arduino VU meter</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdepolska><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Polska</h4>Polish keyboard Drupal module</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdegraph><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Graph</h4>Javascript Graph PoC</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdeinsignificant><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Insignificant!</h4>loltext generator Drupal module</div></a></div></div></div><div class=row><h1 class=dedication>an MDWorld production</h1><p><a class=cc href=http://creativecommons.org/licenses/by-nc-sa/3.0/ title="Creative Commons">CC</a> 2003-2017</p></div></div></footer></div><!-- .site --><script src=/blog/js/scripts.js></script><!-- Run init for demo after loading jquery --><script>if(typeof(demoInit) === 'function') {
+                demoInit();
+            }</script></body></html>

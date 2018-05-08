@@ -1,0 +1,141 @@
+<!DOCTYPE html><!--[if lt IE 9]> <html class="lt-ie9" lang="en"> <![endif]--><!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]--><!--[if gt IE 9]><!--><html xmlns=http://www.w3.org/1999/xhtml class=gt-ie9 lang=en><!--<![endif]--><head><!-- version 0.3.5 --><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=author content="mdworld 0.3.5"><title>On Sass and Compass</title><link rel="shortcut icon" href=/blog/img/favicon.ico type=image/x-icon><link rel=stylesheet href=/blog/css/all.css></head><body><div class=site><nav class="navbar navbar-inverse navbar-fixed-top"><div><div class=container><div class=row><ul class="nav navbar-nav navbar-right"><li><a href=/blog/ ><span class="glyphicon glyphicon-home"></span> home</a></li><li><a href=/blog/#blog><span class="glyphicon glyphicon-pencil"></span> blog</a></li><li><a href=https://twitter.com/mdworldNL><span class=twitter></span> <span class=label-optional>@mdworldNL</span></a></li><li><a href=# data-toggle=modal data-target=#contactModal><span class="glyphicon glyphicon-envelope"></span> <span class=label-optional>contact</span></a></li></ul></div></div></div><header><h1 class="title post-title container">On Sass and Compass</h1></header></nav><p class="meta container">12 Sep 2012</p><div class="post container"><div class=multi-column-text><p>Yesterday, I attended a training on Sass and Compass by <a href=http://roytomeij.com/ >Roy Tomeij</a> organised by <a href=http://fronteers.nl/ >Fronteers</a>. <a href=http://sass-lang.com/ >Sass</a> is a CSS meta language and compiles to CSS, to make it easier to maintain than CSS yet still usable in the same browsers.</p><style>#compiled-css-wrapper {
+    background: transparent;
+    position: fixed;
+    right: 10px;
+    top: 70px;
+    width: 45%;
+    z-index: 10;
+}
+@media only screen and (min-width: 1600px) {
+  #compiled-css-wrapper {
+      right: 465px;
+  }
+}
+#compiled-css-wrapper > div {
+    width: 400px;
+}
+#compiled-css-wrapper > p {
+    background: #000;
+    color: white;
+    width: 400px;
+}</style><p><a href=http://compass-style.org/ >Compass</a> is a plugin for Sass and offers a lot of often used patterns, but it does more, which I&#39;ll explain below.</p><p>Sass is a front-end meta language (or CSS preprocessor) that compiles to CSS. It has 2 syntaxes, &quot;Original Sass&quot; and SCSS. SCSS is easiest to start with if you already know CSS, because it just adds syntax. &quot;Original Sass&quot; and other CSS meta languages like LESS are <a href=http://css-tricks.com/sass-vs-less/ >out of scope</a> here. How to run Sass is also out of scope, but let me just say that there is a free utility called <a href=http://mhs.github.com/scout-app/ >Scout</a> that makes it easier. However, compiling <a href=http://sass-lang.com/tutorial.html>on the command line</a> is a lot faster. For debugging in the browser you can try <a href=https://addons.mozilla.org/nl/firefox/addon/firesass-for-firebug/ >FireSass</a> or enable line numbers when compiling Sass.</p><p>As mentioned, it&#39;s better if you already know CSS. As anyone who ever used Frontpage knows, preprocessors can result in <a href=http://freepages.genealogy.rootsweb.ancestry.com/~gearyfamily/frontpage/images/bloated-excel-code.jpg>bloated code</a>. That&#39;s why it&#39;s recommended to monitor the generated CSS, especially in the beginning. You&#39;ll need to learn how the Sass compiler works and that way you can make really clean code.</p><p>Although the CSS3 spec is very much alive and new features that make the lives of developers easier are added regularly, it takes time for all browsers, particularly those that don&#39;t push new versions <strong>cough</strong>IE<strong>cough</strong>, to support these. For some of these features, Sass (e.g. in combination with the Compass CSS3 module) is a good workaround, because it results in code that works on current browsers and it is easy to incorporate fallbacks.</p><p>So far I&#39;ve only argued why Sass is a good idea, now I want to show that it&#39;s really easy to use and how you can profit from it as a developer. I won&#39;t go into all topics discussed in the training, but I&#39;ll add a list of links of the basic concepts in the Sass documentation.</p><p>Sass supports:<ul><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#variables_>Variables</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#nested_rules>Nesting</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#referencing_parent_selectors_>Parent Reference</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#interpolation_>Interpolation</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#operations>Operations</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#partials>Partials</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#extend>Selector Inheritance</a></li><li><a href=http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html>Functions</a> (including <a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#function_directives>custom functions</a>!)</li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#control_directives>Control directives</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#mixins>Mixins</a></li><li><a href=http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#output_style>Minification</a> (see compressed)</li></ul></p><p>An annotated example:</p><div class=sass-source><figure class=highlight><pre><code class=language-scss data-lang=scss><span class=c1>// This is a valid Sass comment. It will not be visible in 
+// the compiled CSS
+</span><span class=cm>/* This comment will be visible in the CSS */</span>
+
+<span class=c1>// This is a variable with name maincolor and value 
+// &lt;span style="color: #f00;"&gt;#f00&lt;/span&gt; of the data-type color.
+</span><span class=nv>$maincolor</span><span class=p>:</span> <span class=mh>#f00</span><span class=p>;</span>
+<span class=c1>// A variable with the data-type number
+</span><span class=nv>$val</span><span class=p>:</span> <span class=m>1</span><span class=p>;</span>
+<span class=c1>// Also a variable with the data-type number
+</span><span class=nv>$example-size</span><span class=p>:</span> <span class=m>10px</span><span class=p>;</span>
+
+<span class=nc>.maincontent</span> <span class=p>{</span>
+  <span class=c1>// Using a variable
+</span>  <span class=nl>color</span><span class=p>:</span> <span class=nv>$maincolor</span><span class=p>;</span>
+  <span class=c1>// Addition operator
+</span>  <span class=nl>width</span><span class=p>:</span> <span class=m>500px</span> <span class=o>+</span> <span class=m>10px</span><span class=p>;</span>
+  <span class=c1>// Mixing unit types is possible, if compatible (no using % here!)
+</span>  <span class=nl>height</span><span class=p>:</span> <span class=m>5in</span> <span class=o>+</span> <span class=m>10pt</span><span class=p>;</span>
+  <span class=c1>// Division operator
+</span>  <span class=nl>margin-left</span><span class=p>:</span> <span class=nv>$example-size</span> <span class=o>/</span> <span class=m>3</span><span class=p>;</span>
+  <span class=c1>// Round function
+</span>  <span class=nl>margin-right</span><span class=p>:</span> <span class=nf>round</span><span class=p>(</span><span class=nv>$example-size</span> <span class=o>/</span> <span class=m>3</span><span class=p>);</span>
+  <span class=c1>// Using / when needed in CSS, by interpolation
+</span>  <span class=nl>border-radius</span><span class=p>:</span> <span class=si>#{</span><span class=nv>$example-size</span><span class=si>}</span> <span class=o>/</span> <span class=m>3px</span><span class=p>;</span>
+
+  <span class=c1>// Nesting. This applies to an h1 in the .maincontent
+</span>  <span class=c1>// Although nesting is very convenient for maintaince try
+</span>  <span class=c1>// to prevent nesting more than 4 levels deep, because
+</span>  <span class=c1>// otherwise it results in very long selector statements
+</span>  <span class=c1>// in the CSS. This is bad for performance.
+</span>  <span class=nt>h1</span> <span class=p>{</span>
+    <span class=nl>border</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=no>black</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=c1>// Declaring a function to modify width
+// A function returns just a value
+</span><span class=k>@function</span> <span class=nf>new-width</span><span class=p>(</span><span class=nv>$width</span><span class=p>)</span> <span class=p>{</span>
+  <span class=nv>$border-width</span><span class=p>:</span> <span class=m>1</span><span class=p>;</span>
+  <span class=k>@return</span> <span class=m>10</span> <span class=o>+</span> <span class=p>(</span><span class=m>2</span> <span class=o>*</span> <span class=nv>$border-width</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=c1>// Interpolation of the variable $val
+</span><span class=nc>.sidebar-</span><span class=si>#{</span><span class=nv>$val</span><span class=si>}</span> <span class=p>{</span>
+  <span class=c1>// Using the function
+</span>  <span class=nl>width</span><span class=p>:</span> <span class=nf>new-width</span><span class=p>(</span><span class=m>100</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=c1>// Declaring a mixin to generate column rules
+// A mixin returns a block of code.
+</span><span class=k>@mixin</span> <span class=nf>add-columns</span><span class=p>(</span><span class=nv>$amount</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>@for</span> <span class=nv>$i</span> <span class=ow>from</span> <span class=m>1</span> <span class=ow>through</span> <span class=nv>$amount</span> <span class=p>{</span>
+    <span class=nc>.column-</span><span class=si>#{</span><span class=nv>$i</span><span class=si>}</span> <span class=p>{</span>
+      <span class=nv>$bgcolor</span><span class=p>:</span> <span class=no>red</span><span class=p>;</span>
+      <span class=k>@if</span> <span class=nv>$i</span> <span class=o>&amp;</span><span class=n>lt</span><span class=p>;</span> <span class=nt>2</span> <span class=p>{</span>
+        <span class=nv>$bgcolor</span><span class=p>:</span> <span class=no>blue</span><span class=p>;</span>
+      <span class=p>}</span>
+      <span class=nl>border</span><span class=p>:</span> <span class=nv>$bgcolor</span><span class=p>;</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=nc>.column-wrapper</span> <span class=p>{</span>
+  <span class=c1>// Using the mixin
+</span>  <span class=k>@include</span> <span class=nd>add-columns</span><span class=p>(</span><span class=m>2</span><span class=p>);</span>
+<span class=p>}</span></code></pre></figure></div><div id=compiled-css><p>This compiles to:</p><figure class=highlight><pre><code class=language-css data-lang=css><span class=c>/* This comment will be visible in the CSS */</span>
+<span class=nc>.maincontent</span> <span class=p>{</span>
+  <span class=nl>color</span><span class=p>:</span> <span class=no>red</span><span class=p>;</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>510px</span><span class=p>;</span>
+  <span class=nl>height</span><span class=p>:</span> <span class=m>5.139in</span><span class=p>;</span>
+  <span class=nl>margin-left</span><span class=p>:</span> <span class=m>3.333px</span><span class=p>;</span>
+  <span class=nl>margin-right</span><span class=p>:</span> <span class=m>3px</span><span class=p>;</span>
+  <span class=nl>border-radius</span><span class=p>:</span> <span class=m>10px</span> <span class=p>/</span> <span class=m>3px</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.maincontent</span> <span class=nt>h1</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=m>1px</span> <span class=nb>solid</span> <span class=no>black</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=nc>.sidebar-1</span> <span class=p>{</span>
+  <span class=nl>width</span><span class=p>:</span> <span class=m>12</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=nc>.column-wrapper</span> <span class=nc>.column-1</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=no>blue</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nc>.column-wrapper</span> <span class=nc>.column-2</span> <span class=p>{</span>
+  <span class=nl>border</span><span class=p>:</span> <span class=no>red</span><span class=p>;</span>
+<span class=p>}</span></code></pre></figure></div><p>Compass is a library for Sass, and a bit more. It adds:<ul><li><a href=http://compass-style.org/help/tutorials/spriting/ >Generating sprites</a> (including magic sprites, where a directory of PNG images is automatically converted to a sprite and the required CSS with positions!)</li><li>A slew of mixins that automatically adds vendor-prefixes for features that require them, e.g. <a href=http://compass-style.org/reference/compass/css3/border_radius/ >border-radius</a>.</li><li>Much used features, such as a <a href=http://compass-style.org/reference/compass/reset/ >reset style</a> or a <a href=http://compass-style.org/reference/compass/utilities/general/clearfix/#mixin-clearfix>mixin for clearfix</a>.</li></ul></p><p>Because Sass is a compiler, it will check the input for syntax errors. The compiler can even be configured to do minification. This will concatenate the included files (which is better for performance, because there is only 1 HTTP request), compress the result and also remove all comments, except those starting with /*! which is conform other minifiers.</p><p>It is advised to group all variables for e.g. colors in one file and all mixins in files separated from the other code. It is easy to make a modular set-up in Sass, because you can include other Sass files that are automatically combined to one file. Because the architecture of a web project is beyond the scope of this post, I want to refer to the <a href=http://roy.io/book>book</a> that Roy is writing on this subject. He also has a presentation about modular and reusable front-end code. Another way to learn more about CSS architecture is to be guided by <a href=http://smacss.com/ >Smacss</a>.</p><script>// Wait for jQuery add the end of the page
+setTimeout(function() {
+    (function($){
+        function init() {
+            var src = $('#compiled-css').html();
+            var $copy = $('<div id="compiled-css-wrapper"></div>');
+            $copy
+                .html(src)
+                .mouseover(function() {
+                    $('#compiled-css-wrapper').show();
+                })
+                .mouseout(function() {
+                    $('#compiled-css-wrapper').hide();
+                })
+                .hide();
+            $('body').append($copy);
+            console.log('test');
+            $('.sass-source')
+                .mouseover(function() {
+                    $('#compiled-css-wrapper').show();
+                })
+                .mouseout(function() {
+                    $('#compiled-css-wrapper').hide();
+                });
+        }
+
+        $(document).ready(function(){
+            init();
+        });
+    })(jQuery);
+}, 100);</script></div></div><div class="modal fade modal-terminal" id=contactModal tabindex=-1 role=dialog aria-labelledby=contactModalLabel aria-hidden=true><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal><span aria-hidden=true>&times;</span><span class=sr-only>Close</span></button><h4 class=modal-title id=myModalLabel>contact@mdworld</h4></div><div class=modal-body><form role=form id=contactForm><div class=form-group><label for=contactName>Name</label><input class=form-control id=contactName placeholder="Enter name" name=name required maxlength=1024></div><div class=form-group><label for=contactEmail>Email address</label><input type=email class=form-control id=contactEmail placeholder="Enter email" name=email required maxlength=1024></div><div class=form-group><label for=contactMessage>Message</label><textarea class=form-control id=contactMessage placeholder=Message name=message required maxlength=4096></textarea></div><button type=button class="btn btn-primary submit-contact">Submit</button></form></div></div></div></div><footer><div class="content container"><div class="row projects"><div class="col-xs-12 col-xl-4 col-xl-offset-2"><h2>Open Source by MDWorld</h2></div></div><div class="row projects"><div class="col-xs-12 col-sm-6 col-xl-4 col-xl-offset-2"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/polygram><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>polygram</h4>Polymer and Redux App</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-pwa-demo><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-pwa-demo</h4>Progressive Web App demo</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/homeremote><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>HomeRemote</h4>ES6 React and Node Home automation tool</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/generator-mdworld-toolchain><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>generator-mdworld-toolchain</h4>Yeoman generator to set up the mdworld toolchain</div></a></div><div class=media-wrapper><a class=media href=http://mdvanes.github.io/ImpossibleObjects/ ><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>ImpossibleObjects</h4>A selection of impossible objects using Canvas</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2html><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2html</h4>Grunt task to combine Knockout templates into one HTML</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/grunt-kot2js><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>grunt-kot2js</h4>Grunt task to convert Knockout templates to a JavaScript file</div></a></div></div><div class="col-xs-12 col-sm-6 col-xl-4"><div class=media-wrapper><a class=media href=https://github.com/mdvanes/mdworld-stox><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>mdworld-stox</h4>Websockets in Node.js demo</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/SynergyChrome><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>SynergyChrome</h4>Use Synergy in Chrome</div></a></div><div class=media-wrapper><a class=media href=https://github.com/mdvanes/Movienight><span class="pull-left icon github"></span><div class=media-body><h4 class=media-heading>Movienight</h4>PoC for hybrid app with Ionic Framework</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mderekelbox><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Rekelbox</h4>Arduino VU meter</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdepolska><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Polska</h4>Polish keyboard Drupal module</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdegraph><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>MDE Graph</h4>Javascript Graph PoC</div></a></div><div class=media-wrapper><a class=media href=https://bitbucket.org/mdvanes/mdeinsignificant><span class="pull-left icon bitbucket"></span><div class=media-body><h4 class=media-heading>Insignificant!</h4>loltext generator Drupal module</div></a></div></div></div><div class=row><h1 class=dedication>an MDWorld production</h1><p><a class=cc href=http://creativecommons.org/licenses/by-nc-sa/3.0/ title="Creative Commons">CC</a> 2003-2017</p></div></div></footer></div><!-- .site --><script src=/blog/js/scripts.js></script><!-- Run init for demo after loading jquery --><script>if(typeof(demoInit) === 'function') {
+                demoInit();
+            }</script></body></html>
